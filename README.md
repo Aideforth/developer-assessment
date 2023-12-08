@@ -1,84 +1,30 @@
 # developer-assessment
-A technical assessment exercise for Developer candidates
+A technical assessment submission
 
-The purpose of this exercise is to assess your ability across several skills including;
+There are 2 parts of this web application:
+1. Backend code
+2. Frontend code
 
-- Time management and prioritisation
-- Code organisation
-- Familiarity with the core technologies
-- Documentation
+To setup the application, first clone this repo and follow the steps to setup the backend and the frontend.
 
-You are not necessarily required to complete the exercise but we encourage spending at least 4 hours to showcase as much as you can.
+To set up the Backend, follow this steps:
 
-If you have any questions please email developers@lifestoreshealthcare.com
+1. You need to have docker installed, if you do not, please download from https://docs.docker.com/get-docker/
+2. In your terminal or command prompt, open the folder of the cloned repo
+3. Navigate to `backend\productsApp`
+4. In this directory, run the command `python manage.py migrate`, to create database tables, there is a default sqllite db created in the app. 
+5. Run the command `python manage.py loaddata products` to prepopulate the database.
+4. Run the command `docker build -t products-app .`
+5. Then run the command `docker run -it -p 8000:8000 products-app`
+6. This will load backend app on the port 8000, if this is run on a local computer, it should be on localhost:8000
 
-##Technologies
 
-#### Frontend
-- REACTJS
-- Context API
-- GRAPHQL
+To set up the Frontend, follow this steps:
+1. You need to have npm installed, if you do not, please download from https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+2. In your terminal or command prompt, open the folder of the cloned repo.
+3. Navigate to `frontend\products-front-app`
+4. If you modified the url of the backend server, you need to update `REACT_APP_GRAPH_QL_BASE_URL` value in the .env file to match it.
+5. In the directory mentioned in step 3, run the command `npm install`
+6. Then run the command `npm start`
+7. Browse/test the application.
 
-### Backend
-- Django
-- Graphene
-- Docker
-
-##### Test:
-Given the Product data below: 
-
-```
-[
-    {
-        "name":"Paracetamol",
-        "description":"Paracetamol (acetaminophen) is a pain reliever and a fever reducer",
-        "sku":"8HE902",
-        "price":300,
-        "image":"https://www.m-medix.com/2759-large_default/emzor-paracetamol-tablets.jpg"
-    },
-    {
-        "name":"Prednisolone",
-        "description":"Prednisolone is a corticosteroid (cortisone-like medicine or steroid). It works on the immune system to help relieve swelling, redness, itching, and allergic reactions",
-        "sku":"8HE809",
-        "price":600,
-        "image":"https://5.imimg.com/data5/RU/SX/JJ/SELLER-109604861/prednisolone-tablet-500x500.jpg"
-    },
-    {
-        "name":"Lumefantrine",
-        "description":"Lumefantrine is an antimalarial agent used to treat acute uncomplicated malaria.",
-        "sku":"8HE809",
-        "price":1200,
-        "image":"https://i1.wp.com/nimedhealth.com.ng/wp-content/uploads/2020/09/IMG_20200920_082326-1.jpg?fit=2487%2C1599&ssl=1"
-    },
-    {
-        "name":"Coflin",
-        "description":"Coflin Is Used To Treat Coughs And Congestion Caused By The Common Cold, Bronchitis, And Other Breathing Illnesses.",
-        "sku":"8HE809",
-        "price":1200,
-        "image":"https://www.m-medix.com/2677-large_default/dr-meyers-coflin-expectorant-100ml.jpg"
-    }
-]
-```
-
-Using Python, Graphene, Docker, etc.
-a) Create a Product model
-b) Create a command to migrate the products data above into the database
-c) Create a GraphQL endpoint to return all the products to the FE
-d) Encapsulate your back-end services in docker containers
-
-Using React, Context API, and GraphQL
-a) Create a products page to show the GraphQL fetched products in cards with appropriate product data(name, price, pictures, etc.)
-b) Each product should have an "Add to cart" button
-c) On click add to cart, show cart summary component as an overlay and add the product to the cart.
-d) Allow increment(+), decrement(-) and delete functionality on each cart item in the cart
-
-Once complete share instructions on how we can review the code and run
-the application.
-
-#### EVALUATION CRITERIA
-Your solution will be evaluated for:
-1. Design/Architecture Quality
-2. Code Quality
-3. User Experience (Frontend)
-4. DB Migration
-5. Tests
